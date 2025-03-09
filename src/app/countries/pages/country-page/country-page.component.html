@@ -1,0 +1,144 @@
+<ng-template #loading>
+  <div class="alert alert-info text-center">Espere por favor...</div>
+</ng-template>
+
+<div *ngIf="country; else loading">
+  <div class="row">
+    <div class="col">
+      <h2>
+        País: <strong>{{ country.name.common }}</strong>
+      </h2>
+      <hr />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <mat-card appearance="outlined">
+        <mat-card-content>
+          <h3>Bandera</h3>
+          <mat-card appearance="outlined">
+            <mat-card-content>
+              <img
+                [src]="country.flags.svg"
+                [alt]="country.name.common"
+                class="img-thumbnail"
+              />
+            </mat-card-content>
+          </mat-card>
+
+          <h3>Blasón</h3>
+          <mat-card appearance="outlined">
+            <mat-card-content>
+              <img
+                [src]="country.coatOfArms.svg"
+                [alt]="country.name.common"
+                class="img-thumbnail"
+              />
+            </mat-card-content>
+          </mat-card>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col">
+      <mat-card appearance="outlined">
+        <mat-card-content>
+          <ul class="list-group">
+            <h3>Información</h3>
+            <li class="list-group-item">
+              <strong> Población: </strong>{{ country.population | number }}
+            </li>
+            <li class="list-group-item">
+              <strong> Código CCA2: </strong>{{ country.cca2 }} |
+              <strong> Código CAA3: </strong>{{ country.cca3 }}
+            </li>
+            <li class="list-group-item">
+              <strong> Region: </strong>{{ country.region }} |
+              <strong> Subregion: </strong>{{ country.subregion }}
+            </li>
+            <li class="list-group-item">
+              <strong> Capital: </strong>{{ country.capital }}
+            </li>
+            <li class="list-group-item">
+              <strong> Fronteras: </strong>
+              <span
+                *ngFor="let border of country.borders"
+                class="badge bg-primary m-1 "
+                routerLink="/countries/by/{{ border }}"
+                style="cursor:pointer;"
+                >{{ border }}</span
+              >
+            </li>
+            <li class="list-group-item">
+              <strong>Area: </strong> {{ country.area | number }} km²
+            </li>
+            <li class="list-group-item">
+              <strong>Independiente: </strong>
+              {{ country.independent ? "Si" : "No" }} |
+              <strong>Con salida al mar: </strong>
+              {{ country.landlocked ? "No" : "Si" }} |
+              <strong>Inscrito en la ONU: </strong>
+              {{ country.unMember ? "Si" : "No" }}
+            </li>
+            <li class="list-group-item">
+              <strong>Sentido de circulación:</strong>
+              {{ country.car.side === "right" ? "Derecha" : "Izquierda" }}
+            </li>
+            <li class="list-group-item">
+              <strong>Zonas horarias: </strong>
+              <span
+                *ngFor="let timezone of country.timezones"
+                class="badge bg-primary m-1"
+                >{{ timezone }}</span
+              >
+            </li>
+            <li class="list-group-item">
+              <strong>Inicio de semana: </strong>{{ country.startOfWeek | translateDay  }}
+            </li>
+          </ul>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col">
+      <mat-card>
+        <mat-card-content>
+          <mat-card appearance="outlined">
+            <mat-card-content>
+              <h3>Traducciones</h3>
+              <div class="d-flex flex-wrap">
+                <span class="badge bg-primary m-1">{{
+                  country.translations["ara"].official
+                }}</span>
+                <span class="badge bg-primary m-1">{{
+                  country.translations["deu"].official
+                }}</span>
+                <span class="badge bg-primary m-1">{{
+                  country.translations["cym"].official
+                }}</span>
+                <span class="badge bg-primary m-1">{{
+                  country.translations["fra"].official
+                }}</span>
+                <span class="badge bg-primary m-1">{{
+                  country.translations["ita"].official
+                }}</span>
+                <span class="badge bg-primary m-1">{{
+                  country.translations["jpn"].official
+                }}</span>
+                <span class="badge bg-primary m-1">{{
+                  country.translations["rus"].official
+                }}</span>
+                <span class="badge bg-primary m-1">{{
+                  country.translations["spa"].official
+                }}</span>
+                <span class="badge bg-primary m-1">{{
+                  country.translations["swe"].official
+                }}</span>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

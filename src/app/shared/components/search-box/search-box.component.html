@@ -1,0 +1,13 @@
+<mat-form-field class="form-control" appearance="fill">
+  <mat-label>{{ placeHolder }}</mat-label>
+  <input
+    matNativeControl
+    [value]="initialValue"
+    (keyup.enter)="emitValue(txtInput.value)"
+    (keyup)="onKeyPress(txtInput.value)"
+    #txtInput
+    type="text"
+  />
+</mat-form-field>
+
+
